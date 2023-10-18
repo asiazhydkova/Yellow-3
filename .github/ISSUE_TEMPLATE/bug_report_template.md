@@ -1,5 +1,5 @@
 ---
-name: Bug _report_template
+name: Bug_report_template
 about: Template for bug report creating
 title: ''
 labels: ''
