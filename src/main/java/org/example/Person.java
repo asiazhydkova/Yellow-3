@@ -21,8 +21,8 @@ public class Person {
     }
     public Person(){}
     public Person(String name,int birthYear){
-        this.name=name;
-        this.birthYear=birthYear;
+        setName(name);
+        setBirthYear(birthYear);
     }
     public int calculateAge(){
         return Calendar.getInstance().get(Calendar.YEAR)-birthYear;
