@@ -7,7 +7,7 @@ public class Main {
         Person[] people = new Person[5];
         for (int i = 0; i < 5; i++) {
             people[i] = new Person();
-            System.out.println("Please, enter information for person " + (i + 1) + ":");
+            System.out.println("Please, enter information about person " + (i + 1) + ":");
             people[i].input();
         }
 
