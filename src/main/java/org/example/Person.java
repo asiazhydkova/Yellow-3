@@ -1,6 +1,7 @@
 package org.example;
 
 import java.time.*;
+import java.util.Scanner;
 
 public class Person {
     private String name;
@@ -22,7 +23,7 @@ public class Person {
         return name;
     }
 
-    public void setName(String name) {
+    public void changeName(String name) {
         this.name = name;
     }
 
@@ -34,11 +35,18 @@ public class Person {
         this.birthYear = birthYear;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
+    public void input(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a new name : ");
+        name = scanner.next();
+        System.out.print("Enter a new birthYear : ");
+        birthYear = scanner.nextInt();
+    }
+
+    public void output() {
+        System.out.println("Person{" +
                 "name='" + name + '\'' +
                 ", birthYear=" + birthYear +
-                '}';
+                '}');
     }
 }

@@ -1,7 +1,5 @@
 package org.example;
 
-import java.time.*;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -23,13 +21,16 @@ public class Main {
         Person pr4 = new Person("Oleksandr", 1992);
         Person pr5 = new Person("Stepan", 1992);
 
-        System.out.println(pr1.toString());
-        System.out.println(pr2.toString());
-        System.out.println(pr3.toString());
-        System.out.println(pr4.toString());
-        System.out.println(pr5.toString());
+        pr1.output();
+        pr2.output();
+        pr3.output();
+        pr4.output();
+        pr5.output();
+
         System.out.println(pr1.age());
 
+        pr1.input();
+        pr1.output();
 
     }
 
