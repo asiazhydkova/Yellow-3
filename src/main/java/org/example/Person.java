@@ -39,6 +39,6 @@ public class Person {
         System.out.println("Birth Year: " + birthYear);
     }
     public void changeName(String newName) {
-        name = newName;
+        setName(newName);
     }
 }
