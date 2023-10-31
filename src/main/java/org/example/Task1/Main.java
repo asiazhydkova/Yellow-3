@@ -1,10 +1,18 @@
-package org.example;
+package org.example.Task1;
 
+/**
+ * @author mykhailo_romaniv
+ * @version 0.1
+ * @since 29-10-2023
+ */
 public class Main {
-
+    /**
+     *
+     * @param args to set arguments to main
+     */
     public static void main(String[] args) {
 
-        Person[] persons=new Person[5];
+        Person[] persons = new Person[5];
         persons[0] = new Person();
         persons[0].setName("Alice");
         persons[0].setBirthYear(2000);
@@ -19,10 +27,11 @@ public class Main {
             persons[i].input();
         }
         */
+
         persons[0].changeName("Alex");
-        for(Person person:persons){
+        for (Person person : persons) {
             person.output();
-            System.out.println("Age: "+person.calculateAge());
+            System.out.println("Age: " + person.calculateAge());
         }
 
     }
