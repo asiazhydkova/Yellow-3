@@ -1,6 +1,4 @@
-package App.interface1;
-
-import java.util.ArrayList;
+package interface1;
 
 public interface Animal {
     public void voice();
