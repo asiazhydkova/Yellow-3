@@ -136,3 +136,13 @@ build/
 /.idea/sonarlint/securityhotspotstore/f/f/ff9ded911b82c87236c0506ec1ffc77c817dd3bf
 /.idea/sonarlint/issuestore/index.pb
 /.idea/sonarlint/securityhotspotstore/index.pb
+/.idea/sonarlint/securityhotspotstore/3/0/30205a209c6ce77c4cfc19a09e6f57c588b7fb88
+/.idea/sonarlint/issuestore/3/0/30205a209c6ce77c4cfc19a09e6f57c588b7fb88
+/.idea/sonarlint/issuestore/e/d/ed67eb178d523a4b3f117dcbe0eda5196367ceec
+/.idea/sonarlint/securityhotspotstore/e/d/ed67eb178d523a4b3f117dcbe0eda5196367ceec
+# SonarLint
+.sonarlint/
+
+# Опціонально, ігноруємо файли конфігурації SonarLint, якщо вони вам не потрібні
+.sonarlint.xml
+
