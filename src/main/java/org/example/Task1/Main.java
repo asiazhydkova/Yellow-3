@@ -1,4 +1,4 @@
-package org.example.Task1;
+package org.example.task1;
 
 /**
  * @author mykhailo_romaniv
