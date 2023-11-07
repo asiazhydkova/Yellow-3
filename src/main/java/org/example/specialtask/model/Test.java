@@ -1,4 +1,4 @@
-package org.example.specialtask.Model;
+package org.example.specialtask.model;
 
 public class Test implements ITypeExamination {
 	private Boolean grade;
@@ -14,5 +14,12 @@ public class Test implements ITypeExamination {
 
 	public Boolean getGrade() {
 		return grade;
+	}
+
+	@Override
+	public String toString() {
+		return "Test{" +
+				"grade=" + grade +
+				'}';
 	}
 }

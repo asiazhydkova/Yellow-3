@@ -1,4 +1,4 @@
-package org.example.specialtask.Model;
+package org.example.specialtask.model;
 
 public class Exam implements ITypeExamination {
 	private int grade;
@@ -15,4 +15,10 @@ public class Exam implements ITypeExamination {
 		return grade;
 	}
 
+	@Override
+	public String toString() {
+		return "Exam{" +
+				"grade=" + grade +
+				'}';
+	}
 }

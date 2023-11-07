@@ -1,4 +1,4 @@
-package org.example.specialtask.Model;
+package org.example.specialtask.model;
 
 public class Student {
 
@@ -9,6 +9,14 @@ public class Student {
 	private GradeBook gradeBook;
 	private Group group;
 	
+
+	public Student(String firstname, String secondName, String lastName, Group group, GradeBook grade) {
+		setFirstname(firstname);
+		setSecondName(secondName);
+		setLastName(lastName);
+		setGroup(group);
+		setGradeBook(grade);
+	}
 	public String getFirstname() {
 		return firstname;
 	}
@@ -39,4 +47,10 @@ public class Student {
 	public void setGroup(Group group) {
 		this.group = group;
 	}
+	@Override
+	public String toString() {
+		return "Student [firstname=" + firstname + ", secondName=" + secondName + ", lastName=" + lastName
+				+ ", gradeBook=" + gradeBook + ", group=" + group + "]";
+	}
+	
 }

@@ -1,4 +1,4 @@
-package org.example.specialtask.Model;
+package org.example.specialtask.model;
 
 public interface ITypeExamination {
 

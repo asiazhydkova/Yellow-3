@@ -1,9 +1,9 @@
-package org.example.specialtask.Repository;
+package org.example.specialtask.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.specialtask.Model.Student;
+import org.example.specialtask.model.Student;
 
 public class StudentRepository implements IRepository<Student>{
 	
@@ -12,28 +12,21 @@ public class StudentRepository implements IRepository<Student>{
     public StudentRepository() {
         students = new ArrayList<>();
     }
+    
+
     @Override
     public List<Student> getAll() {
         return students;
     }
-    
-    public Student getByGradeBookId(String id) {
-        for (Student student : students) {
-            if (student.getGradeBook().getId() == id) {
-                return student;
-            }
-        }
 
-        return null;
-    }
     @Override
-    public void create(Student student) {
+    public void add(Student student) {
         students.add(student);
     }
     @Override
     public void update(Student student) {
         for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getGradeBook().getId().equals(student.getGradeBook().getId())) {
+            if (students.get(i).getGradeBook().getId()==(student.getGradeBook().getId())) {
                 students.set(i, student);
                 return;
             }
@@ -43,6 +36,15 @@ public class StudentRepository implements IRepository<Student>{
     public void delete(Student student) {
         students.remove(student);
     }
+
+	public Student getById(int Id) {
+		for (Student student : students) {
+            if (student.getGradeBook().getId() == Id) {
+                return student;
+            }
+        }
+		return null;
+	}
 
 }
 

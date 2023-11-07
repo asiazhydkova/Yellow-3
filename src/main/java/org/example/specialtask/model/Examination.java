@@ -1,4 +1,4 @@
-package org.example.specialtask.Model;
+package org.example.specialtask.model;
 
 import java.time.LocalDate;
 
@@ -8,10 +8,26 @@ public class Examination {
 	private LocalDate actualDate;
 	private LocalDate examinationDate;
 	
-	public Examination(ITypeExamination examenType, LocalDate examinationDate) {
-		setType(examenType);
+	public Examination(String examenType, LocalDate examinationDate) {
+		handler(examenType);
 		setExaminationDate(examinationDate);
 	}
+	
+	public void handler(String hand) {
+		switch (hand) {
+	    case "Exam":
+	        type = new Exam();
+	        break;
+	    case "Test":
+	        type = new Test();
+	        break;
+	    default:
+	    	type = new Test();
+	        System.out.print("Input or Exam or Test on default will be test");
+	        break;
+	}
+	}
+	
 	public ITypeExamination getType() {
 		return type;
 	}
@@ -31,4 +47,12 @@ public class Examination {
 		this.examinationDate = examinationDate;
 	}
 
+	@Override
+	public String toString() {
+		return "Examination{" +
+				"type=" + type +
+				", actualDate=" + actualDate +
+				", examinationDate=" + examinationDate +
+				'}';
+	}
 }

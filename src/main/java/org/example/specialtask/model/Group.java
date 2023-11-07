@@ -1,5 +1,4 @@
-package org.example.specialtask.Model;
-
+package org.example.specialtask.model;
 
 public class Group {
 	private String name;
@@ -12,6 +11,7 @@ public class Group {
 		setYearOfCreation(yearOfCreation);
 		
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -31,5 +31,9 @@ public class Group {
 
 	public void setYearOfCreation(int yearOfCreation) {
 		this.yearOfCreation = yearOfCreation;
+	}
+	@Override
+	public String toString() {
+		return "Group [name=" + name + ", number=" + number + ", yearOfCreation=" + yearOfCreation + "]";
 	}
 }
