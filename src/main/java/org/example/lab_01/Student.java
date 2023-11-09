@@ -12,6 +12,7 @@ public class Student {
     }
 
     public Student(String name) {
+        if (name.isBlank() || name.isEmpty()) throw new IllegalArgumentException();
         this.name = name;
         number++;
     }
@@ -28,7 +29,7 @@ public class Student {
         return this.getRating() > student.getRating();
     }
 
-    public static double getAvgRating() {
+    public static double getAvgRating() throws ArithmeticException {
         return (double) sum / number;
     }
 
@@ -37,6 +38,7 @@ public class Student {
     }
 
     public void setRating(int rating) {
+        if (rating < 0) throw new IllegalArgumentException();
         this.rating = rating;
         sum += rating;
     }

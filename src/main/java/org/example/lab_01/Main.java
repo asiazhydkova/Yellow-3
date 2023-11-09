@@ -15,7 +15,7 @@ public class Main {
     }
 
     private static void mainPerson() {
-        Person pr1 = new Person("Artem", 1993);
+        Person pr1 = new Person("Artem", 2000);
         Person pr2 = new Person("Mark", 1996);
         Person pr3 = new Person("Oleksa", 1992);
         Person pr4 = new Person("Oleksandr", 1992);
@@ -29,8 +29,8 @@ public class Main {
 
         System.out.println(pr1.age());
 
-        pr1.input();
-        pr1.output();
+        //pr1.input();
+        //pr1.output();
 
     }
 

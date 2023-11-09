@@ -6,6 +6,7 @@ abstract class Employee implements Payable {
     public String name;
 
     public Employee(String name) {
+        if (name.isEmpty() || name.isBlank()) throw new IllegalArgumentException();
         this.name = name;
         allEmployees += 1;
         employeeld = allEmployees;

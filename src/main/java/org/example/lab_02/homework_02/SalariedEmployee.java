@@ -7,6 +7,10 @@ public class SalariedEmployee extends Employee {
 
     public SalariedEmployee(String name, String socialSecurityNumber, double hourlyRate, double hoursWorked) {
         super(name);
+
+        if (socialSecurityNumber.isBlank() || socialSecurityNumber.isEmpty()) throw new IllegalArgumentException();
+        if (hourlyRate < 0 || hoursWorked < 0) throw new IllegalArgumentException();
+
         setSocialSecurityNumber(socialSecurityNumber);
         this.hourlyRate = hourlyRate;
         this.hoursWorked = hoursWorked;
@@ -29,7 +33,7 @@ public class SalariedEmployee extends Employee {
         return socialSecurityNumber;
     }
 
-    public void setSocialSecurityNumber(String socialSecurityNumber) throws IllegalArgumentException{
+    public void setSocialSecurityNumber(String socialSecurityNumber) throws IllegalArgumentException {
         if (Validator.isTrueSSN(socialSecurityNumber)) {
             this.socialSecurityNumber = socialSecurityNumber;
         } else {

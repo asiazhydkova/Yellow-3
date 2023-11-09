@@ -6,6 +6,10 @@ public class ContractEmployee extends Employee {
 
     public ContractEmployee(String name, String federalTaxIdMember, double monthlyPayment) {
         super(name);
+
+        if (federalTaxIdMember.isBlank() || federalTaxIdMember.isEmpty()) throw new IllegalArgumentException();
+        if (monthlyPayment < 0) throw new IllegalArgumentException();
+
         setFederalTaxIdMember(federalTaxIdMember);
         this.monthlyPayment = monthlyPayment;
     }

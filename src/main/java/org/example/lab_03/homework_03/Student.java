@@ -10,6 +10,9 @@ public class Student {
     private int course;
 
     public Student(String name, int course) {
+        if (name.isBlank() || name.isEmpty()) throw new IllegalArgumentException();
+        if (course < 1 || course > 4) throw new IllegalArgumentException();
+
         this.name = name;
         this.course = course;
     }
@@ -38,11 +41,14 @@ public class Student {
                 '}';
     }
 
-    public static List<Student> printStudents(List students, Integer course) {
+    public static List<Student> printStudents(List<Student> students, int course) {
+        if (students.isEmpty()) throw new IllegalArgumentException();
+        if (course < 1 || course > 4) throw new IllegalArgumentException();
+
         List<Student> resultList = new ArrayList<>();
-        Iterator iterator = students.iterator();
+        Iterator<Student> iterator = students.iterator();
         while (iterator.hasNext()) {
-            Student stud = (Student) iterator.next();
+            Student stud = iterator.next();
             if (stud.getCourse() == course) {
                 resultList.add(stud);
             }

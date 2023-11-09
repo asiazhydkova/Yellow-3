@@ -6,24 +6,32 @@ public class Employee {
     private int hours;
     static int totalSum;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(String name, int rate) {
+        if (name.isBlank() || name.isEmpty()) throw new IllegalArgumentException();
+        if (rate < 0) throw new IllegalArgumentException();
+
         this.name = name;
         this.rate = rate;
     }
 
     public Employee(String name, int rate, int hours) {
+        if (name.isBlank() || name.isEmpty()) throw new IllegalArgumentException();
+        if (rate < 0) throw new IllegalArgumentException();
+        if (hours < 0 || hours > 24) throw new IllegalArgumentException();
+
         this.name = name;
         this.rate = rate;
         this.hours = hours;
     }
 
-    public int getSalary(){
+    public int getSalary() {
         return rate * hours;
     }
 
-    public double getBonuses (){
+    public double getBonuses() {
         return rate * hours * 0.1;
     }
 
