@@ -1,12 +1,16 @@
 package org.example.specialtask;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Deanery dekanat=new Deanery();
 		dekanat.createGroup("IT", "11-1", 2020);
+
+
 
 		dekanat.createStudent("Misha", "dsa", "Asd", dekanat.groupRepository.getByNameAndNumber("IT", "11-1"));
 		dekanat.createStudent("Sasha", "dsa", "Asd", dekanat.groupRepository.getByNameAndNumber("IT", "11-1"));
