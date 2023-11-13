@@ -1,4 +1,4 @@
-package org.example.lab_04.homework_02;
+package org.example.lab_04.hw_02;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package org.example.lab_03.homework_03;
+package org.example.lab_03.hw_03;
 
 import java.util.ArrayList;
 import java.util.Comparator;

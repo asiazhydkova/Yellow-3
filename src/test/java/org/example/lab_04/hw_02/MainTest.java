@@ -1,12 +1,11 @@
-package org.example.lab_04.homework_02;
+package org.example.lab_04.hw_02;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Scanner;
 
-import static org.example.lab_04.homework_02.Main.readNumber;
+import static org.example.lab_04.hw_02.Main.readNumber;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

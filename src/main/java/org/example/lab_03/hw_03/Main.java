@@ -1,9 +1,10 @@
-package org.example.lab_03.homework_03;
+package org.example.lab_03.hw_03;
 
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         List<Student> list = new ArrayList<>();
         list.add(new Student("Andriy", 1));
@@ -31,6 +32,7 @@ public class Main {
         System.out.println("---------------------Sort by Course--------------------");
         Collections.sort(list, new Student.compareByCourse());
         printStudentsList(list);
+
 
     }
 

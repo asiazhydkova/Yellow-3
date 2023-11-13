@@ -1,10 +1,7 @@
-package org.example.lab_03.homework_02;
+package org.example.lab_03.hw_02;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static java.util.Map.*;
 
 public class Main {
     public static void main(String[] args) {
