@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.example.selenium.java.pages.HomePage;
 
+import java.time.Duration;
+
 public class TestHomePage {
     private WebDriver driver;
     private HomePage homePage;
@@ -24,8 +26,9 @@ public class TestHomePage {
     public void testSelectFirstTheme() {
         homePage.clickIconChangeColorTheme();
         homePage.chooseDropDownMenuThemeButton(1);
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
         String actual = homePage.getNavBarBackgroundColor();
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
         String expected = "rgba(103, 58, 183, 1)";
 
         assertEquals(expected, actual);
