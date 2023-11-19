@@ -16,13 +16,14 @@ public class LoginPage extends BasePage {
     private WebElement password;
 
     @FindBy(xpath = LOGIN_BUTTON)
-    public WebElement loginButton;
+    private WebElement loginButton;
 
     @FindBy(xpath = REGISTER_BUTTON)
     private WebElement registerButton;
 
     @FindBy(xpath = LOGIN_FORM)
-    public WebElement loginForm;
+    private WebElement loginForm;
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -48,8 +49,8 @@ public class LoginPage extends BasePage {
     public WebElement getUsername() {
         return username;
     }
-
     public WebElement getPassword() {
         return password;
     }
+    public WebElement getLoginForm() { return loginForm; }
 }

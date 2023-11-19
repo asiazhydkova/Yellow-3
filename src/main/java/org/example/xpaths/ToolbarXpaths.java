@@ -6,8 +6,8 @@ public class ToolbarXpaths {
     public static final String SHOP_BUTTON = "//mat-toolbar-row//mat-icon[contains(text(), 'shopping_cart')]/ancestor::button";
     public static final String FAVORITE_BUTTON = "//mat-toolbar-row//mat-icon[contains(text(), 'favorite')]/ancestor::button";
 
-    public static final String SWAGGER_LINK = "//a[contains(text(), 'Swagger')]/ancestor::button";
-    public static final String GITHUB_LINK = "//a[contains(text(), 'GitHub')]/ancestor::button";
+    public static final String SWAGGER_BUTTON = "//a[contains(text(), 'Swagger')]/ancestor::button";
+    public static final String GITHUB_BUTTON = "//a[contains(text(), 'GitHub')]/ancestor::button";
 
     public static final String SEARCH_INPUT = "//mat-toolbar//input";
     public static final String TITLE_BUTTON = "//div[contains(@class,'brand-title')]/button";

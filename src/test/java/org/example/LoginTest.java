@@ -14,7 +14,7 @@ class LoginTest extends BaseTest {
     @Test
     public void openLoginPage() {
         getToolBarPage().clickLoginButtonTB();
-        assertTrue(getLoginPage().loginForm.isDisplayed());
+        assertTrue(getLoginPage().getLoginForm().isDisplayed());
     }
 
     @Test
