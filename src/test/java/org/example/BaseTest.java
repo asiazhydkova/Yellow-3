@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.pages.LoginPage;
+import org.example.pages.ToolBarPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseTest {
     private WebDriver driver;
-    private static final String URL = "https://bookcart.azurewebsites.net/login";
+    private static final String URL = "https://bookcart.azurewebsites.net";
 
     @BeforeAll
     public static void profileSetUp() {
@@ -36,6 +37,10 @@ public class BaseTest {
 
     public LoginPage getLoginPage() {
         return new LoginPage(getDriver());
+    }
+
+    public ToolBarPage getToolBarPage() {
+        return new ToolBarPage(getDriver());
     }
 
 

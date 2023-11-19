@@ -3,7 +3,7 @@ package org.example.xpaths;
 public class ToolbarXpaths {
     public static final String LOGIN_BUTTON = "//mat-toolbar//button[contains(@class, 'ng-star-inserted')]";
     public static final String THEME_BUTTON = "//mat-toolbar//app-theme-picker/button";
-    public static final String SHOP_BATTON = "//mat-toolbar-row//mat-icon[contains(text(), 'shopping_cart')]/ancestor::button";
+    public static final String SHOP_BUTTON = "//mat-toolbar-row//mat-icon[contains(text(), 'shopping_cart')]/ancestor::button";
     public static final String FAVORITE_BUTTON = "//mat-toolbar-row//mat-icon[contains(text(), 'favorite')]/ancestor::button";
 
     public static final String SWAGGER_LINK = "//a[contains(text(), 'Swagger')]/ancestor::button";
