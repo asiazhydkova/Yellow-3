@@ -24,6 +24,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = LOGIN_FORM)
     private WebElement loginForm;
 
+    @FindBy(xpath = ERROR_MESSAGE)
+    private WebElement errorMessage;
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -53,4 +56,7 @@ public class LoginPage extends BasePage {
         return password;
     }
     public WebElement getLoginForm() { return loginForm; }
+    public WebElement getErrorMessage() {
+        return errorMessage;
+    }
 }

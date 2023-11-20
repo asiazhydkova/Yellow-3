@@ -10,6 +10,8 @@ class LoginTest extends BaseTest {
 
     private String validUsername = " ";
     private String validPassword = " ";
+    private String noValidUsername = "qwer";
+    private String noValidPassword = "12346564";
 
     @Test
     public void openLoginPage() {
@@ -29,4 +31,15 @@ class LoginTest extends BaseTest {
         assertTrue(getToolBarPage().getFavoriteButton().isDisplayed());
     }
 
+    @Test
+    public void loginNegative(){
+        getToolBarPage().clickLoginButtonTB();
+        getLoginPage().getUsername().clear();
+        getLoginPage().inputUsername(noValidUsername);
+        getLoginPage().getPassword().clear();
+        getLoginPage().inputPassword(noValidPassword);
+        getLoginPage().clickLoginButton();
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
+        assertTrue(getLoginPage().getErrorMessage().isDisplayed());
+    }
 }
