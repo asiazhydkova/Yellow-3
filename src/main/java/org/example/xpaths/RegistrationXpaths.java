@@ -12,7 +12,7 @@ public class RegistrationXpaths {
     public static final String ERROR_USERNAME = "//mat-error[contains(text(),'User Name is required')]";
     public static final String ERROR_PASSWORD = "//mat-error[contains(text(),'Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number ')]";
     public static final String ERROR_CONFIRM_PASSWORD = "//mat-error[contains(text(),'Password do not match')]";
-    public static final String ERROR_RADIO_BUTTON = "//*[@id='mat-error-6']  -> Bag";
+    //public static final String ERROR_RADIO_BUTTON = "//*[@id='mat-error-6']  -> Bag";
 
     public static final String RADIO_BUTTON_MALE = "//mat-radio-button[contains(@value, 'Male')]";
     public static final String RADIO_BUTTON_FEMALE = "//mat-radio-button[contains(@value, 'Female')]";
