@@ -1,0 +1,3 @@
+public final String SEARCH_FIELD = "//input[@aria-label='search']";
+public final String SEARCH_PLACEHOLDER = "//input[contains(@placeholder,'Search books or authors')]";
+public final String SEARCH_MESSAGE = "//h1[contains(text(), 'No books found')]";
