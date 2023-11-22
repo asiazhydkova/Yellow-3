@@ -1,11 +1,11 @@
 package org.example;
 
 import org.example.pages.LoginPage;
+import org.example.pages.RegistrationPage;
 import org.example.pages.ToolBarPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -35,10 +35,9 @@ public class BaseTest {
         return driver;
     }
 
-    public LoginPage getLoginPage() {
-        return new LoginPage(getDriver());
-    }
 
+    public LoginPage getLoginPage() { return new LoginPage(getDriver()); }
+    public RegistrationPage getRegistrationPage() {return new RegistrationPage(getDriver()); }
     public ToolBarPage getToolBarPage() {
         return new ToolBarPage(getDriver());
     }

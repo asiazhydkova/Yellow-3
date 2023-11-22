@@ -1,9 +1,6 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-
-import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class LoginTest extends BaseTest {
@@ -18,6 +15,7 @@ class LoginTest extends BaseTest {
     @Test
     public void openLoginPage() {
         getToolBarPage().clickLoginButtonTB();
+
         assertTrue(getLoginPage().getLoginForm().isDisplayed());
     }
 
@@ -27,7 +25,8 @@ class LoginTest extends BaseTest {
         getLoginPage().inputUsername(validUsername);
         getLoginPage().inputPassword(validPassword);
         getLoginPage().clickLoginButton();
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        getLoginPage().implicitWait(500);
+
         assertTrue(getToolBarPage().getFavoriteButton().isDisplayed());
     }
 
@@ -37,7 +36,8 @@ class LoginTest extends BaseTest {
         getLoginPage().inputUsername(noValidUsername);
         getLoginPage().inputPassword(noValidPassword);
         getLoginPage().clickLoginButton();
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        getLoginPage().implicitWait(500);
+
         assertTrue(getLoginPage().getErrorMessage().isDisplayed());
     }
 
@@ -47,7 +47,8 @@ class LoginTest extends BaseTest {
         getLoginPage().getUsername().clear();
         getLoginPage().inputPassword(validPassword);
         getLoginPage().clickLoginButton();
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        getLoginPage().waitElement(500, getLoginPage().getErrorEmptyUsername());
+
         assertTrue(getLoginPage().getErrorEmptyUsername().isDisplayed());
     }
 
@@ -57,7 +58,17 @@ class LoginTest extends BaseTest {
         getLoginPage().inputUsername(validUsername);
         getLoginPage().getPassword().clear();
         getLoginPage().clickLoginButton();
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        getLoginPage().implicitWait(500);
+
         assertTrue(getLoginPage().getErrorEmptyPassword().isDisplayed());
+    }
+
+    @Test
+    public void redirectToRegistrationPage(){
+        getToolBarPage().clickLoginButtonTB();
+        getLoginPage().clickRegisterButton();
+        getLoginPage().waitElement(200, getRegistrationPage().getRegisterForm());
+
+        assertTrue(getDriver().getCurrentUrl().contains("register"));
     }
 }

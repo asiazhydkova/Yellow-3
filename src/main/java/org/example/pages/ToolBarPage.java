@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.example.xpaths.ToolbarXpaths.*;
+import static org.example.XPaths.XPath.ToolbarXPaths.*;
 
 public class ToolBarPage extends BasePage {
 
@@ -46,6 +46,7 @@ public class ToolBarPage extends BasePage {
         super(driver);
     }
 
+
     public void clickLoginButtonTB() {
         loginButtonTB.click();
     }
@@ -55,12 +56,6 @@ public class ToolBarPage extends BasePage {
     public WebElement getFavoriteButton() {
         return favoriteButton;
     }
-
-    public WebElement getSwaggerButton() {
-        return swaggerButton;
-    }
-
-    public WebElement getGithubButton() {
-        return githubButton;
-    }
+    public WebElement getSwaggerButton() { return swaggerButton; }
+    public WebElement getGithubButton() { return githubButton; }
 }

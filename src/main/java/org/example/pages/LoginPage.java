@@ -5,9 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.example.xpaths.LoginXpaths.*;
+import static org.example.XPaths.XPath.LoginXpaths.*;
 
-public class LoginPage extends BasePage {
+
+public class LoginPage extends BasePage{
 
     @FindBy(xpath = USERNAME)
     private WebElement username;
@@ -36,6 +37,8 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
+
+
 
     public void clickLoginButton() {
         loginButton.click();
