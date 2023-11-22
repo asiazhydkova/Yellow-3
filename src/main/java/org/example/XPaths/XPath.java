@@ -37,6 +37,7 @@ public interface XPath {
 
     interface ToolbarXPaths {
         String LOGIN_BUTTON = "//mat-toolbar//button[contains(@class, 'ng-star-inserted')]",
+                MENU_PANEL="//*[@id='mat-menu-panel-0']/div",
                 THEME_BUTTON = "//mat-toolbar//app-theme-picker/button",
                 SHOP_BUTTON = "//mat-toolbar-row//mat-icon[contains(text(), 'shopping_cart')]/ancestor::button",
                 FAVORITE_BUTTON = "//mat-toolbar-row//mat-icon[contains(text(), 'favorite')]/ancestor::button",
@@ -48,4 +49,16 @@ public interface XPath {
                 MENU_MYORDER_BUTTON = "//button[contains(text(),'My Orders')]",
                 MENU_LOGOUT_BUTTON = "//button[contains(text(),'Logout')]";
     }
+    interface filterContainer{
+        String CATEGORY_LIST="//app-book-filter/mat-nav-list",
+                CATEGORY_ITEM_BIOGRAPHY="//a[@_ngcontent-hsh-c129=''][contains(text(),'Biography')]",
+                CATEGORY_ITEM_FICTION="//a[@_ngcontent-hsh-c129=''][contains(text(),'Fiction')]",
+                CATEGORY_ITEM_MYSTERY="//a[@_ngcontent-hsh-c129=''][contains(text(),'Mystery')]",
+                CATEGORY_ITEM_FANTASY="//a[@_ngcontent-hsh-c129=''][contains(text(),'Fantasy')]",
+
+                CATEGORY_ITEM_ROMANCE="//a[@_ngcontent-hsh-c129=''][contains(text(),'Romance')]",
+                PRICE_FILTER_WRAPPER="//div[@class='docs-example-viewer-title mat-elevation-z2']";
+
+    }
+
 }
