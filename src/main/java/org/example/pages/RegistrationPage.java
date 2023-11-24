@@ -46,6 +46,7 @@ public class RegistrationPage extends BasePage {
     public void clickRegisterButton() {
         registerButton.click();
     }
+
     public void clickLoginButton() {
         loginButton.click();
     }
@@ -57,19 +58,23 @@ public class RegistrationPage extends BasePage {
 
     public void inputLastName(String input) {
         lastName.clear();
-        lastName.sendKeys(input);}
+        lastName.sendKeys(input);
+    }
 
     public void inputUsername(String input) {
         username.clear();
-        username.sendKeys(input);}
+        username.sendKeys(input);
+    }
 
     public void inputPassword(String input) {
         password.clear();
-        password.sendKeys(input);}
+        password.sendKeys(input);
+    }
 
     public void inputConfirmPassword(String input) {
         confirmPassword.clear();
-        confirmPassword.sendKeys(input);}
+        confirmPassword.sendKeys(input);
+    }
 
     public void selectRadioButtonMale() {
         radioButtonMale.click();
