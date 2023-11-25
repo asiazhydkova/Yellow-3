@@ -39,6 +39,30 @@ public class RegistrationPage extends BasePage {
     @FindBy(xpath = LOGIN_BUTTON)
     private WebElement loginButton;
 
+    @FindBy(xpath = ERROR_FIRST_NAME)
+    private WebElement errorFirstName;
+
+    @FindBy(xpath = ERROR_LAST_NAME)
+    private WebElement errorLastName;
+
+    @FindBy(xpath = ERROR_USERNAME)
+    private WebElement errorUsername;
+
+    @FindBy(xpath = ERROR_PASSWORD)
+    private WebElement errorPassword;
+
+    @FindBy(xpath = ERROR_VALID_PASSWORD)
+    private WebElement errorValidPassword;
+
+    @FindBy(xpath = ERROR_USERNAMEINSYSTEM)
+    private WebElement errorUsernameInSystem;
+
+    @FindBy(xpath = ERROR_CONFIRM_PASSWORD)
+    private WebElement errorConfirmPassword;
+
+    @FindBy(xpath = ERROR_RADIO_BUTTON)
+    private WebElement errorRadioButton;
+
     public RegistrationPage(WebDriver driver) {
         super(driver);
     }
@@ -124,4 +148,20 @@ public class RegistrationPage extends BasePage {
     public WebElement getLoginButton() {
         return loginButton;
     }
+
+    public WebElement getErrorPassword() { return errorPassword; }
+
+    public WebElement getErrorUsernameInSystem() { return errorUsernameInSystem;  }
+
+    public WebElement getErrorFirstName() { return errorFirstName;    }
+
+    public WebElement getErrorLastName() {  return errorLastName;    }
+
+    public WebElement getErrorUsername() { return errorUsername;  }
+
+    public WebElement getErrorConfirmPassword() {  return errorConfirmPassword;   }
+
+    public WebElement getErrorRadioButton() {  return errorRadioButton;  }
+
+    public WebElement getErrorValidPassword() {  return errorValidPassword;  }
 }

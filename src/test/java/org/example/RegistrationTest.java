@@ -1,6 +1,7 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.File;
@@ -29,18 +30,22 @@ public class RegistrationTest extends BaseTest{
         return prop;
     }
 
-    @Test
-    public void openRegistrationPage() {
+    public void goToRegistrationPage(){
         getToolBarPage().clickLoginButtonTB();
         getLoginPage().clickRegisterButton();
+
+    }
+
+    @Test
+    public void openRegistrationPage() {
+        goToRegistrationPage();
 
         assertTrue(getRegistrationPage().getRegisterForm().isDisplayed());
     }
 
     @Test
     public void successfulRegistration() throws IOException {
-        getToolBarPage().clickLoginButtonTB();
-        getLoginPage().clickRegisterButton();
+        goToRegistrationPage();
 
         getRegistrationPage().inputFirstName(openFileProperty().getProperty("firstName"));
         getRegistrationPage().inputLastName(openFileProperty().getProperty("lastName"));
@@ -60,5 +65,50 @@ public class RegistrationTest extends BaseTest{
 
     }
 
+    @Test
+    public void errorMessageWhenInvalidPassword() throws IOException {
+        goToRegistrationPage();
 
+        getRegistrationPage().inputPassword(openFileProperty().getProperty("invalidPassword"));
+        getRegistrationPage().getPassword().sendKeys(Keys.TAB);
+        getRegistrationPage().waitElement(300, getRegistrationPage().getErrorValidPassword());
+
+        assertTrue(getRegistrationPage().getErrorValidPassword().isDisplayed());
+
+    }
+
+    @Test
+    public void errorMessageWhenUsernameInSystem() throws IOException {
+        goToRegistrationPage();
+
+        getRegistrationPage().inputUsername(openFileProperty().getProperty("usernameInSystem"));
+        getRegistrationPage().getUsername().sendKeys(Keys.TAB);
+        getRegistrationPage().waitElement(300, getRegistrationPage().getErrorUsernameInSystem());
+
+        System.out.println(getRegistrationPage().getErrorUsernameInSystem().getText());
+        assertTrue(getRegistrationPage().getErrorUsernameInSystem().isDisplayed());
+
+    }
+
+    @Test
+    public void errorsMessageWhenFieldsEmpty() {
+        goToRegistrationPage();
+
+        getRegistrationPage().getFirstName().sendKeys(Keys.TAB);
+        getRegistrationPage().getLastName().sendKeys(Keys.TAB);
+        getRegistrationPage().getUsername().sendKeys(Keys.TAB);
+        getRegistrationPage().getPassword().clear();
+        getRegistrationPage().getPassword().sendKeys(Keys.TAB);
+        getRegistrationPage().getConfirmPassword().sendKeys(Keys.TAB);
+        getRegistrationPage().getRadioButtonMale().sendKeys(Keys.TAB);
+        getRegistrationPage().getRadioButtonFemale().sendKeys(Keys.TAB);
+
+        getRegistrationPage().waitElement(200, getRegistrationPage().getErrorRadioButton());
+
+        assertTrue(getRegistrationPage().getErrorUsername().isDisplayed());
+        assertTrue(getRegistrationPage().getErrorFirstName().isDisplayed());
+        assertTrue(getRegistrationPage().getErrorLastName().isDisplayed());
+        assertTrue(getRegistrationPage().getErrorPassword().isDisplayed());
+        assertTrue(getRegistrationPage().getErrorRadioButton().isDisplayed());
+    }
 }
