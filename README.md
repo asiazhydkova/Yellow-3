@@ -10,3 +10,5 @@
 * Maksym Moskalenko -> [branch](https://github.com/asiazhydkova/Yellow-3/tree/moskalenko_maksym)
 * Serhii Holyboroda -> [branch](https://github.com/asiazhydkova/Yellow-3/tree/Serhii_Holyboroda)
 * Myroslava Kovalchuk -> [branch](https://github.com/asiazhydkova/Yellow-3/tree/Kovalchuk_)
+
+#### Selenium -> [branch](https://github.com/asiazhydkova/Yellow-3/tree/selenium)
