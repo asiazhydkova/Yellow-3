@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.pages.HomePage;
 import org.example.pages.LoginPage;
 import org.example.pages.RegistrationPage;
 import org.example.pages.ToolBarPage;
@@ -7,21 +8,16 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseTest {
     private WebDriver driver;
     private static final String URL = "https://bookcart.azurewebsites.net";
 
-    @BeforeAll
-    public static void profileSetUp() {
-        System.setProperty("web-driver.gecko.driver", "drivers/geckodriver.exe");
-    }
-
-
     @BeforeEach
     void setUp() {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(URL);
     }
@@ -41,6 +37,7 @@ public class BaseTest {
     public ToolBarPage getToolBarPage() {
         return new ToolBarPage(getDriver());
     }
+    public HomePage getHomePage() {return new HomePage(getDriver());}
 
 
 }

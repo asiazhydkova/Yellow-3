@@ -18,12 +18,12 @@ public class HomePageTest extends BaseTest{
     private WebDriver driver;
     private HomePage homePage;
 
-    @BeforeEach
+    /*@BeforeEach
     public void setUp() {
         driver = new ChromeDriver();
         homePage = new HomePage(driver);
         driver.get("https://bookcart.azurewebsites.net/");
-    }
+    }*/
 
     @Test
     public void testSelectFirstTheme() {
@@ -42,33 +42,30 @@ public class HomePageTest extends BaseTest{
     @ParameterizedTest
     @ValueSource(ints = {45})
     public void viewItemsHomePage(int expected){
-        assertEquals(expected, homePage.getListItems().size());
+        assertEquals(expected, getHomePage().getListItems().size());
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1})
     public void addToCart(int numBooks) {
-        homePage.addToCartInOrder(numBooks);
+        getHomePage().addToCartInOrder(numBooks)
+                .waitElement(2000, getHomePage().getItemAddMessage());
 
-        ToolBarPage toolBarPage = new ToolBarPage(driver);
-        homePage.waitElement(2000, homePage.getItemAddMessage());
-
-        assertEquals(numBooks, toolBarPage.getNumLogoShopButton());
+        assertEquals(numBooks, getToolBarPage().getNumLogoShopButton());
     }
 
     @Test
     public void redirectToCart(){
-        ToolBarPage toolBarPage = new ToolBarPage(driver);
-        toolBarPage.clickShopButton();
+        getToolBarPage().clickShopButton();
 
-        assertTrue(driver.getCurrentUrl().contains("shopping-cart"));
+        assertTrue(getDriver().getCurrentUrl().contains("shopping-cart"));
     }
 
 
-    @AfterEach
+   /* @AfterEach
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
-    }
+    }*/
 }
