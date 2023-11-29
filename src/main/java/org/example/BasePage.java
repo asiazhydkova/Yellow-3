@@ -24,4 +24,8 @@ public class BasePage {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(timeToWait));
         wait.until(d -> element.isDisplayed());
     }
+
+    public boolean isVisible(WebElement element){
+        return element.isDisplayed();
+    }
 }

@@ -12,7 +12,7 @@ import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RegistrationTest extends BaseTest{
+public class RegistrationTest extends BaseTest {
 
     public Properties openFileProperty() throws IOException {
 
@@ -30,7 +30,7 @@ public class RegistrationTest extends BaseTest{
         return prop;
     }
 
-    public void goToRegistrationPage(){
+    public void goToRegistrationPage() {
         getToolBarPage().clickLoginButtonTB();
         getLoginPage().clickRegisterButton();
 
@@ -47,12 +47,12 @@ public class RegistrationTest extends BaseTest{
     public void successfulRegistration() throws IOException {
         goToRegistrationPage();
 
-        getRegistrationPage().inputFirstName(openFileProperty().getProperty("firstName"));
-        getRegistrationPage().inputLastName(openFileProperty().getProperty("lastName"));
-        getRegistrationPage().inputUsername(openFileProperty().getProperty("username"));
-        getRegistrationPage().inputPassword(openFileProperty().getProperty("validPassword"));
-        getRegistrationPage().inputConfirmPassword(openFileProperty().getProperty("validPassword"));
-        getRegistrationPage().selectRadioButtonMale();
+        getRegistrationPage().inputFirstName(openFileProperty().getProperty("firstName"))
+                .inputLastName(openFileProperty().getProperty("lastName"))
+                .inputUsername(openFileProperty().getProperty("username"))
+                .inputPassword(openFileProperty().getProperty("validPassword"))
+                .inputConfirmPassword(openFileProperty().getProperty("validPassword"))
+                .selectRadioButtonMale();
 
         new Actions(getDriver())
                 .pause(java.time.Duration.ofSeconds(1))
@@ -66,41 +66,55 @@ public class RegistrationTest extends BaseTest{
     }
 
     @Test
-    public void errorMessageWhenInvalidPassword() throws IOException {
+    public void unSuccessfulRegistrationWhenInvalidPassword() throws IOException {
         goToRegistrationPage();
 
-        getRegistrationPage().inputPassword(openFileProperty().getProperty("invalidPassword"));
-        getRegistrationPage().getPassword().sendKeys(Keys.TAB);
-        getRegistrationPage().waitElement(300, getRegistrationPage().getErrorValidPassword());
+        getRegistrationPage().inputFirstName(openFileProperty().getProperty("firstName"))
+                .inputLastName(openFileProperty().getProperty("lastName"))
+                .inputUsername(openFileProperty().getProperty("username"))
+                .inputPassword(openFileProperty().getProperty("invalidPassword"))
+                .inputConfirmPassword(openFileProperty().getProperty("invalidPassword"))
+                .selectRadioButtonMale();
+
+        new Actions(getDriver())
+                .pause(java.time.Duration.ofSeconds(1))
+                .click(getRegistrationPage().getRegisterButton())
+                .perform();
 
         assertTrue(getRegistrationPage().getErrorValidPassword().isDisplayed());
-
+        assertTrue(getDriver().getCurrentUrl().contains("register"));
     }
 
     @Test
-    public void errorMessageWhenUsernameInSystem() throws IOException {
+    public void unSuccessfulRegistrationWhenUsernameInSystem() throws IOException {
         goToRegistrationPage();
 
-        getRegistrationPage().inputUsername(openFileProperty().getProperty("usernameInSystem"));
-        getRegistrationPage().getUsername().sendKeys(Keys.TAB);
-        getRegistrationPage().waitElement(300, getRegistrationPage().getErrorUsernameInSystem());
+        getRegistrationPage().inputUsername(openFileProperty().getProperty("usernameInSystem"))
+                .inputUsername("pressTAB")
+                .waitElement(300, getRegistrationPage().getErrorUsernameInSystem());
 
-        System.out.println(getRegistrationPage().getErrorUsernameInSystem().getText());
+        new Actions(getDriver())
+                .pause(java.time.Duration.ofSeconds(1))
+                .click(getRegistrationPage().getRegisterButton())
+                .perform();
+
         assertTrue(getRegistrationPage().getErrorUsernameInSystem().isDisplayed());
+        assertTrue(getDriver().getCurrentUrl().contains("register"));
 
     }
 
     @Test
-    public void errorsMessageWhenFieldsEmpty() {
+    public void viewErrorsMessageWhenFieldsEmpty() {
         goToRegistrationPage();
 
-        getRegistrationPage().getFirstName().sendKeys(Keys.TAB);
-        getRegistrationPage().getLastName().sendKeys(Keys.TAB);
-        getRegistrationPage().getUsername().sendKeys(Keys.TAB);
-        getRegistrationPage().getPassword().clear();
-        getRegistrationPage().getPassword().sendKeys(Keys.TAB);
-        getRegistrationPage().getConfirmPassword().sendKeys(Keys.TAB);
-        getRegistrationPage().getRadioButtonMale().sendKeys(Keys.TAB);
+        getRegistrationPage().inputFirstName("pressTAB")
+                .inputLastName("pressTAB")
+                .inputUsername("pressTAB")
+                .inputPassword("")
+                .inputPassword("pressTAB")
+                .inputConfirmPassword("pressTAB")
+                .getRadioButtonMale().sendKeys(Keys.TAB);
+
         getRegistrationPage().getRadioButtonFemale().sendKeys(Keys.TAB);
 
         getRegistrationPage().waitElement(200, getRegistrationPage().getErrorRadioButton());

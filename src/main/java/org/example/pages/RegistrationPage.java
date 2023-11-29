@@ -1,6 +1,7 @@
 package org.example.pages;
 
 import org.example.BasePage;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -67,6 +68,15 @@ public class RegistrationPage extends BasePage {
         super(driver);
     }
 
+    public void inputTAB(WebElement element, String input){
+        if (input.equals("pressTAB")){
+            element.sendKeys(Keys.TAB);
+        }
+        else {
+            element.sendKeys(input);
+        }
+    }
+
     public void clickRegisterButton() {
         registerButton.click();
     }
@@ -75,38 +85,46 @@ public class RegistrationPage extends BasePage {
         loginButton.click();
     }
 
-    public void inputFirstName(String input) {
+    public RegistrationPage inputFirstName(String input) {
         firstName.clear();
-        firstName.sendKeys(input);
+        inputTAB(firstName, input);
+        return this;
     }
 
-    public void inputLastName(String input) {
+    public RegistrationPage inputLastName(String input) {
         lastName.clear();
-        lastName.sendKeys(input);
+        inputTAB(lastName, input);
+        return this;
     }
 
-    public void inputUsername(String input) {
+    public RegistrationPage inputUsername(String input) {
         username.clear();
-        username.sendKeys(input);
+        inputTAB(username, input);
+        return this;
     }
 
-    public void inputPassword(String input) {
+    public RegistrationPage inputPassword(String input) {
         password.clear();
-        password.sendKeys(input);
+        inputTAB(password, input);
+        return this;
     }
 
-    public void inputConfirmPassword(String input) {
+    public RegistrationPage inputConfirmPassword(String input) {
         confirmPassword.clear();
-        confirmPassword.sendKeys(input);
+        inputTAB(confirmPassword, input);
+        return this;
     }
 
-    public void selectRadioButtonMale() {
+    public RegistrationPage selectRadioButtonMale() {
         radioButtonMale.click();
+        return this;
     }
 
-    public void selectRadioButtonFemale() {
+    public RegistrationPage selectRadioButtonFemale() {
         radioButtonFemale.click();
+        return this;
     }
+
 
     //Getters
     public WebElement getRegisterForm() {

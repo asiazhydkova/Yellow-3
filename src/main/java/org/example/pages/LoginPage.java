@@ -39,47 +39,34 @@ public class LoginPage extends BasePage{
     }
 
 
-
-    public void clickLoginButton() {
+    public LoginPage clickLoginButton() {
         loginButton.click();
+        return this;
     }
 
-    public void clickRegisterButton() {
+    public LoginPage clickRegisterButton() {
         registerButton.click();
+        return this;
     }
 
-    public void inputUsername(String name) {
+    public LoginPage inputUsername(String name) {
         username.clear();
         username.sendKeys(name);
+        return this;
     }
 
-    public void inputPassword(String passwordQ) {
+    public LoginPage inputPassword(String passwordQ) {
         password.clear();
         password.sendKeys(passwordQ);
+        return this;
     }
 
     //Getters
-    public WebElement getUsername() {
-        return username;
-    }
+    public WebElement getLoginForm() { return loginForm;  }
 
-    public WebElement getPassword() {
-        return password;
-    }
+    public WebElement getErrorMessage() {  return errorMessage;  }
 
-    public WebElement getLoginForm() {
-        return loginForm;
-    }
+    public WebElement getErrorEmptyUsername() {  return errorEmptyUsername;  }
 
-    public WebElement getErrorMessage() {
-        return errorMessage;
-    }
-
-    public WebElement getErrorEmptyUsername() {
-        return errorEmptyUsername;
-    }
-
-    public WebElement getErrorEmptyPassword() {
-        return errorEmptyPassword;
-    }
+    public WebElement getErrorEmptyPassword() {    return errorEmptyPassword;  }
 }
