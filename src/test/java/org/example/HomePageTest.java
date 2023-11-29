@@ -1,20 +1,18 @@
 package org.example;
 
 import org.example.pages.HomePage;
-import org.example.pages.LoginPage;
-import org.example.pages.RegistrationPage;
 import org.example.pages.ToolBarPage;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomePageTest extends BaseTest{
     private WebDriver driver;
@@ -40,6 +38,33 @@ public class HomePageTest extends BaseTest{
         String expected = "rgba(255, 215, 64, 1)";
         assertEquals(expected, actual);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {45})
+    public void viewItemsHomePage(int expected){
+        assertEquals(expected, homePage.getListItems().size());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1})
+    public void addToCart(int numBooks) {
+        homePage.addToCartInOrder(numBooks);
+
+        ToolBarPage toolBarPage = new ToolBarPage(driver);
+        homePage.waitElement(2000, homePage.getItemAddMessage());
+
+        assertEquals(numBooks, toolBarPage.getNumLogoShopButton());
+    }
+
+    @Test
+    public void redirectToCart(){
+        ToolBarPage toolBarPage = new ToolBarPage(driver);
+        toolBarPage.clickShopButton();
+
+        assertTrue(driver.getCurrentUrl().contains("shopping-cart"));
+    }
+
+
     @AfterEach
     public void tearDown() {
         if (driver != null) {

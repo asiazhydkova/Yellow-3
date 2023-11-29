@@ -1,6 +1,7 @@
 package org.example.pages;
 
 import org.example.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,6 +52,12 @@ public class ToolBarPage extends BasePage {
         loginButtonTB.click();
     }
 
+    public void clickShopButton() { shopButton.click(); }
+
+    public int getNumLogoShopButton() {
+        return Integer.parseInt(shopButton.findElement(By.xpath(LOGO_SHOP)).getText());
+    }
+
 
     //Getters
     public WebElement getFavoriteButton() {
@@ -58,4 +65,6 @@ public class ToolBarPage extends BasePage {
     }
     public WebElement getSwaggerButton() { return swaggerButton; }
     public WebElement getGithubButton() { return githubButton; }
+    public WebElement getShopButton() { return shopButton; }
+
 }

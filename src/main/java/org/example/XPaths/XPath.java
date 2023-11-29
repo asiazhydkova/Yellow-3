@@ -48,7 +48,9 @@ public interface XPath {
                 TITLE_BUTTON = "//div[contains(@class,'brand-title')]/button",
                 MENU_BUTTON = "//div/button[contains(@class, 'mat-menu-trigger')]",
                 MENU_MYORDER_BUTTON = "//button[contains(text(),'My Orders')]",
-                MENU_LOGOUT_BUTTON = "//button[contains(text(),'Logout')]";
+                MENU_LOGOUT_BUTTON = "//button[contains(text(),'Logout')]",
+                LOGO_SHOP = "//mat-icon/span";
+
     }
 
     interface filterContainer {
@@ -61,6 +63,12 @@ public interface XPath {
         CATEGORY_ITEM_ROMANCE = "//a[@_ngcontent-hsh-c129=''][contains(text(),'Romance')]",
                 PRICE_FILTER_WRAPPER = "//div[@class='docs-example-viewer-title mat-elevation-z2']";
 
+    }
+
+    interface HomeXPaths {
+        String LIST_ITEMS = "//div[contains(@class, 'p-1 ng-star-inserted')]",
+                BUTTON = "//app-addtocart//button",
+                ITEM_ADD_MESSAGE = "//div[contains(@dir, 'ltr')]";
     }
 
 }
