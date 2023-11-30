@@ -46,11 +46,11 @@ public class HomePageTest extends BaseTest{
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1})
-    public void addToCart(int numBooks) {
-        getHomePage().addToCartInOrder(numBooks)
-                .waitElement(2000, getHomePage().getItemAddMessage());
-
+    @ValueSource(ints = {1,2,5})
+    public void addToCart(int numBooks) throws InterruptedException {
+        getHomePage().addToCartInOrder(numBooks);
+                //.waitElement(2000, getHomePage().getItemAddMessage());
+        Thread.sleep(1000);
         assertEquals(numBooks, getToolBarPage().getNumLogoShopButton());
     }
 

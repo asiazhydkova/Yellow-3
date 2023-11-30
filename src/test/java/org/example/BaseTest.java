@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.pages.HomePage;
-import org.example.pages.LoginPage;
-import org.example.pages.RegistrationPage;
-import org.example.pages.ToolBarPage;
+import org.example.pages.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,10 +31,9 @@ public class BaseTest {
 
     public LoginPage getLoginPage() { return new LoginPage(getDriver()); }
     public RegistrationPage getRegistrationPage() {return new RegistrationPage(getDriver()); }
-    public ToolBarPage getToolBarPage() {
-        return new ToolBarPage(getDriver());
-    }
+    public ToolBarPage getToolBarPage() {return new ToolBarPage(getDriver());}
     public HomePage getHomePage() {return new HomePage(getDriver());}
+    public CartPage getCartPage() {return new CartPage(getDriver());}
 
 
 }

@@ -66,9 +66,15 @@ public interface XPath {
     }
 
     interface HomeXPaths {
-        String LIST_ITEMS = "//div[contains(@class, 'p-1 ng-star-inserted')]",
-                BUTTON = "//app-addtocart//button",
+        String LIST_ITEMS = "//app-book-card",
+                BUTTON = "//button",
                 ITEM_ADD_MESSAGE = "//div[contains(@dir, 'ltr')]";
+    }
+
+    interface CartXPaths {
+        String LIST_ITEMS_CART = "//tbody//tr",
+                CLEAR_BUTTON = "//app-shoppingcart//span[contains(text(), 'Clear cart')]/ancestor::button";
+
     }
 
 }

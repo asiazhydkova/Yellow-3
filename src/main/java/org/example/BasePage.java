@@ -3,6 +3,7 @@ package org.example;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,8 +22,8 @@ public class BasePage {
     }
 
     public void waitElement(long timeToWait, WebElement element) {
-        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(timeToWait));
-        wait.until(d -> element.isDisplayed());
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofMillis(timeToWait));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public boolean isVisible(WebElement element){

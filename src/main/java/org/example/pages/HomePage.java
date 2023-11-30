@@ -56,9 +56,10 @@ public class HomePage extends BasePage {
 
     public HomePage addToCartInOrder(int numberBooks){
         for (int i = 0; i < numberBooks; i++) {
-            WebElement element = listItems.get(0);
-            WebElement button = element.findElement(By.xpath(BUTTON));
+            WebElement element = listItems.get(i);
+            WebElement button = element.findElement(By.tagName("button"));
             button.click();
+            //waitElement(500, getItemAddMessage());
         }
         return this;
     }
