@@ -6,7 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 import static org.example.XPaths.XPath.HomeXPaths.*;
@@ -55,11 +58,13 @@ public class HomePage extends BasePage {
     }
 
     public HomePage addToCartInOrder(int numberBooks){
+
         for (int i = 0; i < numberBooks; i++) {
             WebElement element = listItems.get(i);
             WebElement button = element.findElement(By.tagName("button"));
             button.click();
-            //waitElement(500, getItemAddMessage());
+            //waitElement(2000, getItemAddMessage());
+            implicitWait(2000);
         }
         return this;
     }

@@ -57,7 +57,9 @@ public class ToolBarPage extends BasePage {
     public int getNumLogoShopButton() {
         return Integer.parseInt(shopButton.findElement(By.xpath(LOGO_SHOP)).getText());
     }
-
+    public WebElement getNumCartButton() {
+        return shopButton.findElement(By.xpath("//mat-icon/span"));
+    }
 
     //Getters
     public WebElement getFavoriteButton() {

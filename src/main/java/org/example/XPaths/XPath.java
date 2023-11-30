@@ -73,7 +73,13 @@ public interface XPath {
 
     interface CartXPaths {
         String LIST_ITEMS_CART = "//tbody//tr",
-                CLEAR_BUTTON = "//app-shoppingcart//span[contains(text(), 'Clear cart')]/ancestor::button";
+                CLEAR_BUTTON = "//app-shoppingcart//span[contains(text(), 'Clear cart')]/ancestor::button",
+                MINUS_BUTTON = "//div[contains(@class,'btn-minus')]/button",
+                ADD_BUTTON = "//div[contains(@class,'btn-plus')]/button",
+                QUANTITY = "//div[contains(@class,'div-quantity')]",
+                ADD_MESSAGE = "//span[contains(text(), 'One item added to cart')]",
+                MINUS_MESSAGE = "//span[contains(text(), 'One item removed from cart')]",
+                DELETE_MESSAGE = "//span[contains(text(), 'Product removed from cart')]";
 
     }
 
