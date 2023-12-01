@@ -1,15 +1,16 @@
 package org.example;
 
 import org.example.pages.HomePage;
-import org.example.pages.ToolBarPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,10 +48,12 @@ public class HomePageTest extends BaseTest{
 
     @ParameterizedTest
     @ValueSource(ints = {1,2,5})
-    public void addToCart(int numBooks) throws InterruptedException {
+    public void addToCart(int numBooks){
+        Wait<WebDriver> wait = new WebDriverWait(getDriver(), Duration.ofMillis(5000));
+
         getHomePage().addToCartInOrder(numBooks);
-                //.waitElement(2000, getHomePage().getItemAddMessage());
-        Thread.sleep(1000);
+        wait.until(ExpectedConditions.textToBePresentInElement(getToolBarPage().getNumCartButton(), String.valueOf(numBooks)));
+
         assertEquals(numBooks, getToolBarPage().getNumLogoShopButton());
     }
 

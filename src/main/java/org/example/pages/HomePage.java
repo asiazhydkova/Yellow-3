@@ -27,7 +27,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = MENU_PANEL)
     private WebElement menuThemePanel;
 
-    @FindBys({@FindBy(xpath = LIST_ITEMS)})
+    @FindBy(xpath = LIST_ITEMS)
     private List<WebElement> listItems;
 
     @FindBy(xpath = ITEM_ADD_MESSAGE)
@@ -64,7 +64,7 @@ public class HomePage extends BasePage {
             WebElement button = element.findElement(By.tagName("button"));
             button.click();
             //waitElement(2000, getItemAddMessage());
-            implicitWait(2000);
+            //implicitWait(2000);
         }
         return this;
     }

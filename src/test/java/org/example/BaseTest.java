@@ -13,8 +13,8 @@ public class BaseTest {
 
     @BeforeEach
     void setUp() {
-        //driver = new ChromeDriver();
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
+        //driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get(URL);
     }

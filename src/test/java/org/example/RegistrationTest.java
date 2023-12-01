@@ -91,10 +91,10 @@ public class RegistrationTest extends BaseTest {
 
         getRegistrationPage().inputUsername(openFileProperty().getProperty("usernameInSystem"))
                 .inputUsername("pressTAB")
-                .waitElement(300, getRegistrationPage().getErrorUsernameInSystem());
+                .implicitWait(1000);
 
         new Actions(getDriver())
-                .pause(java.time.Duration.ofSeconds(1))
+                .pause(java.time.Duration.ofSeconds(2))
                 .click(getRegistrationPage().getRegisterButton())
                 .perform();
 

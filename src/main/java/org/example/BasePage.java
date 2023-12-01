@@ -1,5 +1,6 @@
 package org.example;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -24,6 +25,11 @@ public class BasePage {
     public void waitElement(long timeToWait, WebElement element) {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofMillis(timeToWait));
         wait.until(ExpectedConditions.visibilityOf(element));
+        //wait.until(d -> element.isDisplayed());
+    }
+    public void waitNoElement(long timeToWait, WebElement element) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofMillis(timeToWait));
+        wait.until(ExpectedConditions.invisibilityOf(element));
         //wait.until(d -> element.isDisplayed());
     }
 

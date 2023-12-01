@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import static org.example.XPaths.XPath.CartXPaths.*;
 
 public class CartPage extends BasePage {
 
-    @FindBys({@FindBy(xpath = LIST_ITEMS_CART)})
+    @FindBy(xpath = LIST_ITEMS_CART)
     private List<WebElement> listItemsCart;
 
     @FindBy(xpath = CLEAR_BUTTON)
@@ -41,17 +40,19 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
-    public CartPage addBook(int numBook, int num) {
-        WebElement element = listItemsCart.get(numBook-1);
-        WebElement addButtonW = element.findElement(By.xpath(ADD_BUTTON));
+    public CartPage addBook(int numBook, int num) throws InterruptedException {
         for (int i = 0; i < num; i++) {
+            WebElement element = listItemsCart.get(numBook - 1);
+            WebElement addButtonW = element.findElement(By.xpath(ADD_BUTTON));
             addButtonW.click();
+            Thread.sleep(700);
+
         }
         return this;
     }
 
     public CartPage minusBook(int numBook, int num) {
-        WebElement element = listItemsCart.get(numBook-1);
+        WebElement element = listItemsCart.get(numBook - 1);
         WebElement addButtonW = element.findElement(By.xpath(MINUS_BUTTON));
         for (int i = 0; i < num; i++) {
             addButtonW.click();
@@ -59,9 +60,10 @@ public class CartPage extends BasePage {
         return this;
     }
 
-    public int getQuantity() {
+    public int getQuantityInt() {
         return Integer.parseInt(quantity.getText());
     }
+
 
     //Getters
     public List<WebElement> getListItemsCart() {
@@ -82,6 +84,10 @@ public class CartPage extends BasePage {
 
     public WebElement getDelMessage() {
         return delMessage;
+    }
+
+    public WebElement getQuantity() {
+        return quantity;
     }
 
     public WebElement getMinusButton() {
