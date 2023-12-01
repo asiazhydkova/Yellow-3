@@ -57,14 +57,13 @@ public class HomePage extends BasePage {
         return wb.getCssValue("background-color");
     }
 
-    public HomePage addToCartInOrder(int numberBooks){
+    public HomePage addToCartInOrder(int numberBooks) throws InterruptedException {
 
         for (int i = 0; i < numberBooks; i++) {
             WebElement element = listItems.get(i);
             WebElement button = element.findElement(By.tagName("button"));
             button.click();
-            //waitElement(2000, getItemAddMessage());
-            //implicitWait(2000);
+            Thread.sleep(500);
         }
         return this;
     }

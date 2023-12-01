@@ -1,16 +1,12 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LoginTest extends BaseTest {
-
-    private String validUsername = " ";
-    private String validPassword = " ";
-    private String noValidUsername = "qwer";
-    private String noValidPassword = "12346564";
-
 
     public void goToLoginPage() {
         getToolBarPage().clickLoginButtonTB();
@@ -23,33 +19,42 @@ class LoginTest extends BaseTest {
         assertTrue(getLoginPage().getLoginForm().isDisplayed());
     }
 
-    @Test
-    public void loginPositive() {
+    @ParameterizedTest
+    @CsvSource(value = {
+            "andrSem4,  qiw12UTRgg"
+    })
+    public void loginPositive(String validUsername, String validPassword) {
         goToLoginPage();
         getLoginPage().inputUsername(validUsername)
                 .inputPassword(validPassword)
                 .clickLoginButton()
-                .implicitWait(500);
+                .waitElement(1000, getToolBarPage().getFavoriteButton());
 
         assertTrue(getToolBarPage().getFavoriteButton().isDisplayed());
 
     }
 
-    @Test
-    public void loginNegative() {
+    @ParameterizedTest
+    @CsvSource(value = {
+            "qwer,  12346564"
+    })
+    public void loginNegative(String noValidUsername, String noValidPassword) {
         goToLoginPage();
         getLoginPage().inputUsername(noValidUsername)
                 .inputPassword(noValidPassword)
                 .clickLoginButton()
-                .implicitWait(500);
+                .waitElement(500, getLoginPage().getErrorMessage());
 
         assertTrue(getLoginPage().getErrorMessage().isDisplayed());
         assertTrue(getDriver().getCurrentUrl().contains("login"));
 
     }
 
-    @Test
-    public void loginEmptyUsername() {
+    @ParameterizedTest
+    @CsvSource(value = {
+            "andrSem4"
+    })
+    public void loginEmptyUsername(String validPassword) {
         goToLoginPage();
         getLoginPage().inputUsername("")
                 .inputPassword(validPassword)
@@ -61,13 +66,16 @@ class LoginTest extends BaseTest {
 
     }
 
-    @Test
-    public void loginEmptyPassword() {
+    @ParameterizedTest
+    @CsvSource(value = {
+            "andrSem4"
+    })
+    public void loginEmptyPassword(String validUsername) {
         goToLoginPage();
         getLoginPage().inputUsername(validUsername)
                 .inputPassword("")
                 .clickLoginButton()
-                .implicitWait(500);
+                .waitElement(1000, getLoginPage().getErrorEmptyPassword());
 
         assertTrue(getLoginPage().getErrorEmptyPassword().isDisplayed());
         assertTrue(getDriver().getCurrentUrl().contains("login"));

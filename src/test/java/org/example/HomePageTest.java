@@ -46,9 +46,9 @@ public class HomePageTest extends BaseTest{
         assertEquals(expected, getHomePage().getListItems().size());
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} -> number of books added to cart")
     @ValueSource(ints = {1,2,5})
-    public void addToCart(int numBooks){
+    public void addToCart(int numBooks) throws InterruptedException {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), Duration.ofMillis(5000));
 
         getHomePage().addToCartInOrder(numBooks);

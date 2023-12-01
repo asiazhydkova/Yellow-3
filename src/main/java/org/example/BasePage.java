@@ -27,10 +27,9 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
         //wait.until(d -> element.isDisplayed());
     }
-    public void waitNoElement(long timeToWait, WebElement element) {
+    public void waitTextToBePresentInElement(long timeToWait, WebElement element, String text) {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofMillis(timeToWait));
-        wait.until(ExpectedConditions.invisibilityOf(element));
-        //wait.until(d -> element.isDisplayed());
+        wait.until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
     public void waitElementActive(long timeToWait, WebElement element) {

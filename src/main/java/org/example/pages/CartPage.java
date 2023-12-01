@@ -40,9 +40,9 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
-    public CartPage addBook(int numBook, int num) throws InterruptedException {
-        for (int i = 0; i < num; i++) {
-            WebElement element = listItemsCart.get(numBook - 1);
+    public CartPage addBook(int whatBook, int howManyBook) throws InterruptedException {
+        for (int i = 0; i < howManyBook; i++) {
+            WebElement element = listItemsCart.get(whatBook - 1);
             WebElement addButtonW = element.findElement(By.xpath(ADD_BUTTON));
             addButtonW.click();
             Thread.sleep(700);
@@ -51,11 +51,12 @@ public class CartPage extends BasePage {
         return this;
     }
 
-    public CartPage minusBook(int numBook, int num) {
-        WebElement element = listItemsCart.get(numBook - 1);
-        WebElement addButtonW = element.findElement(By.xpath(MINUS_BUTTON));
-        for (int i = 0; i < num; i++) {
+    public CartPage minusBook(int whatBook, int howManyBook) throws InterruptedException {
+        for (int i = 0; i < howManyBook; i++) {
+            WebElement element = listItemsCart.get(whatBook - 1);
+            WebElement addButtonW = element.findElement(By.xpath(MINUS_BUTTON));
             addButtonW.click();
+            Thread.sleep(700);
         }
         return this;
     }
@@ -74,27 +75,9 @@ public class CartPage extends BasePage {
         return clearButton;
     }
 
-    public WebElement getAddMessage() {
-        return addMessage;
-    }
-
-    public WebElement getMinusMessage() {
-        return minusMessage;
-    }
-
-    public WebElement getDelMessage() {
-        return delMessage;
-    }
-
-    public WebElement getQuantity() {
-        return quantity;
-    }
+    public WebElement getQuantity() {   return quantity;}
 
     public WebElement getMinusButton() {
         return minusButton;
-    }
-
-    public WebElement getAddButton() {
-        return addButton;
     }
 }

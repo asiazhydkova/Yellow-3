@@ -3,15 +3,7 @@ package org.example;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-import static org.example.XPaths.XPath.CartXPaths.QUANTITY;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CartTest extends BaseTest {
@@ -20,11 +12,9 @@ public class CartTest extends BaseTest {
         getToolBarPage().clickShopButton();
     }
 
-    public void addToCart(int books) {
-        Wait<WebDriver> wait = new WebDriverWait(getDriver(), Duration.ofMillis(5000));
-        getHomePage().addToCartInOrder(books);
-        wait.until(ExpectedConditions.textToBePresentInElement(getToolBarPage().getNumCartButton(), String.valueOf(books)));
-
+    public void addToCart(int books) throws InterruptedException {
+        getHomePage().addToCartInOrder(books)
+                .waitTextToBePresentInElement(5000, getToolBarPage().getNumCartButton(), String.valueOf(books));
     }
 
     @Test
@@ -35,10 +25,11 @@ public class CartTest extends BaseTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 5, 20})
-    public void viewAddToCart(int numBooks) {
+    public void viewAddToCart(int numBooks) throws InterruptedException {
         addToCart(numBooks);
         goToCart();
-        getCartPage().waitElement(5000, getCartPage().getClearButton());
+        getCartPage().waitElementActive(5000, getCartPage().getClearButton());
+
         assertEquals(numBooks, getCartPage().getListItemsCart().size());
     }
 
@@ -47,35 +38,31 @@ public class CartTest extends BaseTest {
         int addBooks = 4;
 
         addToCart(1);
-
         goToCart();
-        getCartPage().waitElementActive(3000, getCartPage().getAddButton());
+        getCartPage().waitElementActive(5000, getCartPage().getClearButton());
 
-        getCartPage().addBook(1, addBooks);
+        getCartPage().addBook(1, addBooks)
+                .waitTextToBePresentInElement(3000, getCartPage().getQuantity(), String.valueOf(addBooks + 1));
 
-        Wait<WebDriver> wait = new WebDriverWait(getDriver(), Duration.ofMillis(3000));
-        wait.until(ExpectedConditions.textToBePresentInElement(getCartPage().getQuantity(), String.valueOf(addBooks + 1)));
-
-        assertEquals(Integer.toString(addBooks + 1), getCartPage().getListItemsCart().get(0).findElement(By.xpath(QUANTITY)).getText());
+        assertEquals(addBooks + 1, getCartPage().getQuantityInt());
 
     }
 
-    @Test
-    public void quantityMinus() throws InterruptedException {
-        int minBook = 1;
-
+    @ParameterizedTest(name = "{0} -> so much subtracted")
+    @ValueSource(ints = {1})
+    public void quantityMinus(int minusBook) throws InterruptedException {
         addToCart(1);
         goToCart();
-        getCartPage().waitElementActive(3000, getCartPage().getAddButton());
+        getCartPage().waitElementActive(5000, getCartPage().getClearButton());
 
-        getCartPage().addBook(1, 2);
+        getCartPage().addBook(1, minusBook)
+                .waitElementActive(1000,getCartPage().getMinusButton());
 
-        getCartPage().minusBook(1, minBook);
+        getCartPage()
+                .minusBook(1, minusBook)
+                .waitTextToBePresentInElement(4000, getCartPage().getQuantity(), String.valueOf(1));
 
-        Wait<WebDriver> wait = new WebDriverWait(getDriver(), Duration.ofMillis(4000));
-        wait.until(ExpectedConditions.textToBePresentInElement(getCartPage().getQuantity(), String.valueOf(2)));
-
-        assertEquals(2, getCartPage().getQuantityInt());
+        assertEquals(1, getCartPage().getQuantityInt());
 
     }
 }
