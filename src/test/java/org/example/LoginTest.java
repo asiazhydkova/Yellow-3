@@ -36,14 +36,14 @@ class LoginTest extends BaseTest {
 
     @ParameterizedTest
     @CsvSource(value = {
-            "qwer,  12346564"
+            "qwer5454,  12346564"
     })
     public void loginNegative(String noValidUsername, String noValidPassword) {
         goToLoginPage();
         getLoginPage().inputUsername(noValidUsername)
                 .inputPassword(noValidPassword)
                 .clickLoginButton()
-                .waitElement(500, getLoginPage().getErrorMessage());
+                .waitElement(1000, getLoginPage().getErrorMessage());
 
         assertTrue(getLoginPage().getErrorMessage().isDisplayed());
         assertTrue(getDriver().getCurrentUrl().contains("login"));

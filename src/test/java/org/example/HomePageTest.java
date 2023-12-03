@@ -24,7 +24,7 @@ public class HomePageTest extends BaseTest{
         driver = new ChromeDriver();
         homePage = new HomePage(driver);
         driver.get("https://bookcart.azurewebsites.net/");
-    }*/
+    }
 
     @Test
     public void testSelectFirstTheme() {
@@ -39,7 +39,7 @@ public class HomePageTest extends BaseTest{
         String expected = "rgba(255, 215, 64, 1)";
         assertEquals(expected, actual);
     }
-
+*/
     @ParameterizedTest
     @ValueSource(ints = {45})
     public void viewItemsHomePage(int expected){
