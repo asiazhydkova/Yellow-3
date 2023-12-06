@@ -1,0 +1,602 @@
+{
+	"info": {
+		"_postman_id": "6af645b4-b2bf-41ca-9e18-cb1a820d6ef7",
+		"name": "Greencity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31559767"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"/*\r",
+									"var schema = {\r",
+									"    \"items\": {\r",
+									"        \"type\": \"boolean\"\r",
+									"    }\r",
+									"    };\r",
+									"*/\r",
+									"let user_scheme = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"emailNotification\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"name\",\r",
+									"    \"emailNotification\"\r",
+									"  ]\r",
+									"}\r",
+									"/*\r",
+									"var data1 = [true, 7745];\r",
+									"var data2 = [true, 123];\r",
+									"\r",
+									"pm.test('Schema is valid', function () {\r",
+									"    pm.expect(tv4.validate(data1, schema)).to.be.true;\r",
+									"    pm.expect(tv4.validate(data2, schema)).to.be.true;\r",
+									"});\r",
+									"*/\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test('Schema is valid', function () {\r",
+									"    pm.expect(tv4.validate(jsonData, user_scheme)).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Notification is DISABLED\", function () {\r",
+									"    //var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.emailNotification).to.eql(\"DISABLED\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User no auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"email\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"role\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userCredo\": {\r",
+									"      \"type\": \"null\"\r",
+									"    },\r",
+									"    \"userStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"verifyEmail\": {\r",
+									"      \"type\": \"null\"\r",
+									"    },\r",
+									"    \"rating\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"emailNotification\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"dateOfRegistration\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"socialNetworks\": {\r",
+									"      \"type\": \"null\"\r",
+									"    },\r",
+									"    \"userFriends\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {}\r",
+									"    },\r",
+									"    \"userAchievements\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {}\r",
+									"    },\r",
+									"    \"refreshTokenKey\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"ownSecurity\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"password\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"user\": {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"id\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            },\r",
+									"            \"name\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"email\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"role\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"userCredo\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"userStatus\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"verifyEmail\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"rating\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"emailNotification\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"dateOfRegistration\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"socialNetworks\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"userFriends\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"userAchievements\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"refreshTokenKey\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"ownSecurity\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"profilePicturePath\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"showLocation\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"showEcoPlace\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"showShoppingList\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"lastActivityTime\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"userActions\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"languageVO\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"userLocationDto\": {\r",
+									"              \"type\": \"null\"\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"id\",\r",
+									"            \"name\",\r",
+									"            \"email\",\r",
+									"            \"role\",\r",
+									"            \"userCredo\",\r",
+									"            \"userStatus\",\r",
+									"            \"verifyEmail\",\r",
+									"            \"rating\",\r",
+									"            \"emailNotification\",\r",
+									"            \"dateOfRegistration\",\r",
+									"            \"socialNetworks\",\r",
+									"            \"userFriends\",\r",
+									"            \"userAchievements\",\r",
+									"            \"refreshTokenKey\",\r",
+									"            \"ownSecurity\",\r",
+									"            \"profilePicturePath\",\r",
+									"            \"showLocation\",\r",
+									"            \"showEcoPlace\",\r",
+									"            \"showShoppingList\",\r",
+									"            \"lastActivityTime\",\r",
+									"            \"userActions\",\r",
+									"            \"languageVO\",\r",
+									"            \"userLocationDto\"\r",
+									"          ]\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"password\",\r",
+									"        \"user\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"profilePicturePath\": {\r",
+									"      \"type\": \"null\"\r",
+									"    },\r",
+									"    \"showLocation\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    },\r",
+									"    \"showEcoPlace\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    },\r",
+									"    \"showShoppingList\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    },\r",
+									"    \"lastActivityTime\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userActions\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {}\r",
+									"    },\r",
+									"    \"languageVO\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"code\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"code\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"userLocationDto\": {\r",
+									"      \"type\": \"null\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"id\",\r",
+									"    \"name\",\r",
+									"    \"email\",\r",
+									"    \"role\",\r",
+									"    \"userCredo\",\r",
+									"    \"userStatus\",\r",
+									"    \"verifyEmail\",\r",
+									"    \"rating\",\r",
+									"    \"emailNotification\",\r",
+									"    \"dateOfRegistration\",\r",
+									"    \"socialNetworks\",\r",
+									"    \"userFriends\",\r",
+									"    \"userAchievements\",\r",
+									"    \"refreshTokenKey\",\r",
+									"    \"ownSecurity\",\r",
+									"    \"profilePicturePath\",\r",
+									"    \"showLocation\",\r",
+									"    \"showEcoPlace\",\r",
+									"    \"showShoppingList\",\r",
+									"    \"lastActivityTime\",\r",
+									"    \"userActions\",\r",
+									"    \"languageVO\",\r",
+									"    \"userLocationDto\"\r",
+									"  ]\r",
+									"};\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test('Schema is valid', function () {\r",
+									"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test that the response is equal to the input id\", function () {\r",
+									"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"userId\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test that userStatus is ACTIVATED\", function () {\r",
+									"    pm.expect(jsonData.userStatus).to.eql(\"ACTIVATED\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}user/findById?id={{userId}}",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"findById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User uuid by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"uuid\", responseBody);\r",
+									"\r",
+									"console.log(pm.collectionVariables.replaceIn('{{uuid}}'));\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity-user.greencity.social/user/findUuidByEmail?email={{email}}",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"user",
+								"findUuidByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{email}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update employee's email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"uuid\", responseBody);\r",
+									"\r",
+									"console.log(pm.collectionVariables.replaceIn('{{uuid}}'));\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://greencity-user.greencity.social/user/employee-email?newEmployeeEmail={{password}}&uuid={{uuid}}",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"user",
+								"employee-email"
+							],
+							"query": [
+								{
+									"key": "newEmployeeEmail",
+									"value": "{{password}}"
+								},
+								{
+									"key": "uuid",
+									"value": "{{uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get all orders done by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://greencity-ubs.greencity.social/ubs/client/getAll-users-orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Returns all user orders for logged user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://greencity-ubs.greencity.social/ubs/client/user-orders"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sign-in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"token\", jsonData[\"accessToken\"]);\r",
+							"pm.collectionVariables.set(\"userId\", jsonData[\"userId\"]);\r",
+							"\r",
+							"//onsole.log(pm.collectionVariables.replaceIn('{{token}}'));\r",
+							"//console.log(pm.collectionVariables.replaceIn('{{userId}}'));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://greencity-user.greencity.social/ownSecurity/signIn"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": "mascot591946@gmail.com",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "12123were#@R",
+			"type": "string"
+		},
+		{
+			"key": "uuid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
