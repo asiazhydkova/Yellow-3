@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "da8018ba-dcdb-4506-af64-e03e90a98238",
+		"name": "Azurebooksites",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4990417",
+		"_collection_link": "https://grey-firefly-22367.postman.co/workspace/baa633ed-91f3-4199-8ea3-43756b17a26d/collection/4990417-da8018ba-dcdb-4506-af64-e03e90a98238?action=share&source=collection_link&creator=4990417"
+	},
+	"item": [
+		{
+			"name": "Login Post",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Login Post Copy",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "User get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"var schema = {",
+							"    \"items\": {",
+							"        \"type\": \"boolean\"",
+							"    }",
+							"};",
+							"",
+							"var data1 = [true, false];",
+							"var data2 = [true, 123];",
+							"",
+							"pm.test('Schema is valid', function () {",
+							"    pm.expect(tv4.validate(data1, schema)).to.be.true;",
+							"    pm.expect(tv4.validate(data2, schema)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bookcart.azurewebsites.net//api/User/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"bookcart",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"",
+						"api",
+						"User",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the list of items in the shopping cart",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://bookcart.azurewebsites.net/api/ShoppingCart/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"bookcart",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"ShoppingCart",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear the shopping cart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://bookcart.azurewebsites.net/api/ShoppingCart/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"bookcart",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"ShoppingCart",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reduces the quantity by one for an item in shopping cart",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://bookcart.azurewebsites.net/api/ShoppingCart/{userId}/{bookId}",
+					"protocol": "https",
+					"host": [
+						"bookcart",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"ShoppingCart",
+						"{userId}",
+						"{bookId}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "userId",
+			"value": "22984"
+		},
+		{
+			"key": "bookId",
+			"value": "HP2"
+		}
+	]
+}
