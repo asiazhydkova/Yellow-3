@@ -59,7 +59,7 @@ public class RegistrationTest extends BaseTest {
                 .click(getRegistrationPage().getRegisterButton())
                 .perform();
 
-        getRegistrationPage().waitElement(500, getLoginPage().getLoginForm());
+        getRegistrationPage().waitElement(1000, getLoginPage().getLoginForm());
 
         assertTrue(getDriver().getCurrentUrl().contains("login"));
 

@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.pages.HomePage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,39 +14,30 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HomePageTest extends BaseTest{
-    private WebDriver driver;
-    private HomePage homePage;
-
-    /*@BeforeEach
-    public void setUp() {
-        driver = new ChromeDriver();
-        homePage = new HomePage(driver);
-        driver.get("https://bookcart.azurewebsites.net/");
-    }
-
+public class HomePageTest extends BaseTest {
+/*
     @Test
     public void testSelectFirstTheme() {
 
-        homePage.clickThemeButton();
+        getHomePage().clickThemeButton();
 
-        homePage.chooseDropDownMenuThemeButton(1);
-        homePage.waitElement(1000,homePage.getWebElementPriceFilterWrapper());
+        getHomePage().chooseDropDownMenuThemeButton(1);
+        getHomePage().waitElement(1000,getHomePage().getWebElementPriceFilterWrapper());
 
-        String actual = homePage.getColorElement(homePage.getWebElementPriceFilterWrapper());
-        homePage.waitElement(1000,homePage.getWebElementPriceFilterWrapper());
+        String actual = getHomePage().getColorElement(getHomePage().getWebElementPriceFilterWrapper());
+        getHomePage().waitElement(1000,getHomePage().getWebElementPriceFilterWrapper());
         String expected = "rgba(255, 215, 64, 1)";
         assertEquals(expected, actual);
-    }
-*/
+    }*/
+
     @ParameterizedTest
     @ValueSource(ints = {45})
-    public void viewItemsHomePage(int expected){
+    public void viewItemsHomePage(int expected) {
         assertEquals(expected, getHomePage().getListItems().size());
     }
 
     @ParameterizedTest(name = "{0} -> number of books added to cart")
-    @ValueSource(ints = {1,2,5})
+    @ValueSource(ints = {1, 2, 5})
     public void addToCart(int numBooks) throws InterruptedException {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), Duration.ofMillis(5000));
 
@@ -58,17 +48,10 @@ public class HomePageTest extends BaseTest{
     }
 
     @Test
-    public void redirectToCart(){
+    public void redirectToCart() {
         getToolBarPage().clickShopButton();
 
         assertTrue(getDriver().getCurrentUrl().contains("shopping-cart"));
     }
 
-
-   /* @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }*/
 }
